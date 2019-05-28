@@ -10,43 +10,43 @@ class TabLink {
     
      
     // Check to see if this.tabData is equal to 'all'
-    if(this.tabData === 'all'){
+    if(this.tabData === 'all') {
       // If `all` is true, select all cards regardless of their data attribute values
      this.cards = document.querySelectorAll(".cards-container .card");
     } else {
       // else if `all` is false, only select the cards with matching this.tabData values
-      this.cards = document.querySelectorAll(`.cards-container .card[data-tab='${this.tabData}"]`);
+      this.cards = document.querySelectorAll(`.cards-container .card[data-tab='${this.tabData}']`);
     //console.log(this.cards);
     }
      
 
      // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
     this.cards = Array.from(this.cards).map(element => {
-      return new TabCard(element);
+      new TabCard(element);
     });
 
     // Add a click event that invokes this.selectTab
     this.tabElement.addEventListener('click', () => {
-      this.selectTab()
+      this.selectTab();
     });
   }
 
   selectTab(){
 
     // Select all elements with the .tab class on them
-    const tabs = document.querySelectorAll(".tabs .tab");
+    const tabs = document.querySelectorAll(".tab");
     
     // Iterate through the NodeList removing the .active-tab class from each element
-    Array.from(tabs).forEach(element => {
+    tabs.forEach(element => {
       element.classList.remove(".active-tab");
     })
 
     // Select all of the elements with the .card class on them
-    const cards = document.querySelectorAll(".cards-container .card");
+    const cards = document.querySelectorAll(".card");
 
     // Iterate through the NodeList setting the display style each one to 'none'
-    Array.from(cards).forEach(element => {
-      element.getElementsByClassName.style.display= "none"
+    cards.forEach(element => {
+      element.style.display= "none";
     })
     
     // Add a class of ".active-tab" to this.tabElement
@@ -79,6 +79,6 @@ class TabCard {
 - In your .forEach() method's callback function, return a new instance of TabLink and pass in each tab as a parameter
 
 */
-let tabs = document.querySelectorAll(".tabs").forEach(element => {
-  return new TabLink(element);
+let tabs = document.querySelectorAll(".tab").forEach(element => {
+  new TabLink(element);
 });
